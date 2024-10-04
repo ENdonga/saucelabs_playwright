@@ -1,16 +1,14 @@
 import { Locator, Page } from "playwright";
 
 export class HomePage {
-  readonly page: Page
-  readonly productsHeading: Locator
-  readonly hamburgerBtn: Locator
-  readonly logoutMenu: Locator
-  readonly addToCartBtn: Locator
-  readonly cart: Locator
-  readonly shoppingCartBadge: Locator
+  private readonly productsHeading: Locator
+  private readonly hamburgerBtn: Locator
+  private readonly logoutMenu: Locator
+  private readonly addToCartBtn: Locator
+  private readonly cart: Locator
+  private readonly shoppingCartBadge: Locator
 
-  constructor(page: Page) {
-    this.page = page
+  constructor(public readonly page: Page) {
     this.productsHeading = page.getByTestId('title')
     this.hamburgerBtn = page.locator("#react-burger-menu-btn");
     this.logoutMenu = page.getByTestId("logout-sidebar-link");
@@ -30,6 +28,14 @@ export class HomePage {
   
   async addItemToCart() {
     await this.addToCartBtn.first().click()
+  }
+
+  async isShoppingCartBadgeVisible(): Promise<boolean>{
+    return await this.shoppingCartBadge.isVisible()
+  }
+
+  async getProductHeadingText(): Promise<string> {
+    return await this.productsHeading.textContent() ?? ''
   }
 
 }

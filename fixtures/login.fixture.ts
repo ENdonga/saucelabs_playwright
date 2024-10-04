@@ -5,12 +5,12 @@ import { HomePage } from "../pages/home.page";
 const USERNAME = "standard_user";
 const PASSWORD = "secret_sauce";
 
-type MyFixtures = {
+type TestFixtures = {
     login: () => Promise<void>;
     homePage: HomePage;
 }
 
-export const test = baseTest.extend<MyFixtures>({
+export const test = baseTest.extend<TestFixtures>({
     // fixture to provide login function
     login: async ({ page }, use) => {
         const loginPage = new LoginPage(page);

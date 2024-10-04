@@ -16,18 +16,21 @@ test.beforeEach(async ({ page }) => {
 test.describe('Login - Logout test', () => {
   test('Login test success', async() => {
     await loginPage.loginToApplication(USERNAME, PASSWORD)
-    await expect(homePage.productsHeading).toHaveText("Products");
+    const productText = await homePage.getProductHeadingText()
+    expect(productText).toBe("Products");
   })
 
   test('Login error message', async () => {
-    await loginPage.loginButton.click()
-    await expect(loginPage.errorMessage).toContainText('Username is required');
+    await loginPage.clickLoginButton()
+    const errorMessage = await loginPage.getErrorMessage()
+    expect(errorMessage).toBe('Epic sadface: Username is required');
   })
 
   test('successful logout of application', async () => {
     await loginPage.loginToApplication(USERNAME, PASSWORD);
-    await expect(homePage.productsHeading).toHaveText("Products");
+    const productText = await homePage.getProductHeadingText()
+    expect(productText).toBe("Products");
     await homePage.logoutOfApplication()
-    await expect(loginPage.usernameField).toBeVisible()
+    expect(await loginPage.isUsernameFieldVisible()).toBe(true)
   })
 })
