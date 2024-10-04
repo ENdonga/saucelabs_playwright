@@ -17,6 +17,15 @@ export class HomePage {
     this.shoppingCartBadge = page.getByTestId('shopping-cart-badge')
   }
 
+  // Getters
+  getProductsHeadingLocator(): Locator {
+    return this.productsHeading
+  }
+
+  getShoppingCartLocaotor(): Locator {
+    return this.shoppingCartBadge
+  }
+
   async clickHamburgerMenu() {
     await this.hamburgerBtn.click()
   }
@@ -29,13 +38,4 @@ export class HomePage {
   async addItemToCart() {
     await this.addToCartBtn.first().click()
   }
-
-  async isShoppingCartBadgeVisible(): Promise<boolean>{
-    return await this.shoppingCartBadge.isVisible()
-  }
-
-  async getProductHeadingText(): Promise<string> {
-    return await this.productsHeading.textContent() ?? ''
-  }
-
 }

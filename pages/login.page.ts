@@ -13,6 +13,15 @@ export class LoginPage {
     this.errorMessage = page.getByTestId('error');
   }
 
+  // Getters
+  getUsernameFieldLocator(): Locator {
+    return this.usernameField
+  }
+
+  getErrorMessageLocator(): Locator {
+    return this.errorMessage
+  }
+
   async goto() {
     await this.page.goto("https://www.saucedemo.com/");
   }
@@ -25,13 +34,5 @@ export class LoginPage {
     await this.usernameField.fill(username)
     await this.passwordField.fill(password)
     await this.loginButton.click()
-  }
-
-  async getErrorMessage(): Promise<string> {
-    return await this.errorMessage.textContent() ?? ''
-  }
-
-  async isUsernameFieldVisible() {
-    return await this.usernameField.isVisible()
   }
 }
