@@ -8,7 +8,7 @@ export class HomePage {
   private readonly cart: Locator
   private readonly shoppingCartBadge: Locator
 
-  constructor(public readonly page: Page) {
+  constructor(private readonly page: Page) {
     this.productsHeading = page.getByTestId('title')
     this.hamburgerBtn = page.locator("#react-burger-menu-btn");
     this.logoutMenu = page.getByTestId("logout-sidebar-link");

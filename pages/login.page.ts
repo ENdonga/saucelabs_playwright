@@ -6,7 +6,7 @@ export class LoginPage {
   private readonly loginButton: Locator
   private readonly errorMessage: Locator
 
-  constructor(public readonly page: Page) {
+  constructor(private readonly page: Page) {
     this.usernameField = page.getByTestId('username');
     this.passwordField = page.getByTestId('password');
     this.loginButton = page.getByTestId('login-button');
